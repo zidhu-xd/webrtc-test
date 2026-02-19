@@ -1,0 +1,32 @@
+// Top-level build file
+buildscript {
+    ext {
+        kotlin_version = '1.9.0'
+        compose_version = '1.5.4'
+        lifecycle_version = '2.6.2'
+        room_version = '2.6.0'
+        retrofit_version = '2.9.0'
+        coroutines_version = '1.7.3'
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.48'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }  // Free WebRTC library source
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
