@@ -11,13 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Gradle
+      - name: Install Gradle 8.5
         run: |
-          sudo apt update
-          sudo apt install -y gradle
+          wget https://services.gradle.org/distributions/gradle-8.5-bin.zip
+          unzip gradle-8.5-bin.zip
+          sudo mv gradle-8.5 /opt/gradle
+          export PATH=$PATH:/opt/gradle/bin
+          gradle -v
 
-      - name: Generate Gradle Wrapper
-        run: gradle wrapper
+      - name: Generate Wrapper
+        run: |
+          export PATH=$PATH:/opt/gradle/bin
+          gradle wrapper --gradle-version 8.5
 
       - name: Commit Wrapper
         run: |
